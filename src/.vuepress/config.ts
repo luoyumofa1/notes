@@ -8,7 +8,7 @@ const __dirname = getDirname(import.meta.url);
 
 //自定义用户配置
 export default defineUserConfig({
-  base: '/mynotes/', // 部署的路径配置
+  base: '/notes/', // 部署的路径配置
 
   dest: './dist',  // 设置输出目录
   // 多语言设置
