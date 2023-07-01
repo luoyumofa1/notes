@@ -20,11 +20,4 @@ article: false
 timeline: false
 ---
 
-[小镇美食家](./cooker/README.md)
-
-[小镇技术宅](./iter/README.md)
-
-[小镇运动狂](./sporter/README.md)
-
-[小镇思考者](./thinker/README.md)
 

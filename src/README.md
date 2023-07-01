@@ -11,28 +11,27 @@ actions:
     type: primary
   - text: 【代码笔记】
     link: /codenotes/
-  - text: 【浮生杂记】
+  - text: 【资源宝库】
     link: /floatinglife/
-  - text: 【开源项目】
+  - text: 【Github项目】
     link: /projects/
-  - text: 【练习项目】
-    link: /thinking/
 features:
+    
   - title: 抖音
     icon: /othericon/douyin.svg
-    details: 洛风の抖音
-    link: https://www.douyin.com/user/MS4wLjABAAAAk77SKAU4RV-_N9gURY59Bbbg82Wlbw7QQVftHhMdRPM
+    details: 好看の抖音
+    link: https://www.douyin.com
   - title: 码云
     icon: /othericon/gitee.svg
-    details: 洛风の码云
-    link: https://gitee.com/xt-gitee
+    details: 代码の码云
+    link: https://gitee.com
   - title: B站
     icon: /othericon/bilibili.svg
-    details: 洛风のB站
-    link: https://space.bilibili.com/52459877
+    details: 有趣のB站
+    link: https://www.bilibili.com/
   - title: 力扣
     icon: /othericon/leetcode.svg
-    details: 洛风の力扣
-    link: https://leetcode.cn/u/xt-leetcode/
+    details: 刷题の力扣
+    link: https://leetcode.cn
 ---
 

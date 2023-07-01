@@ -4,82 +4,40 @@ export const zhSidebar = sidebar({
   // 代码笔记的侧边栏
   "/codenotes/": [
     {
-      text: "Java核心",
+      text: "零碎知识",
       icon: "java",
       collapsible: true,
-      prefix: "/codenotes/javacore/",
+      prefix: "/codenotes/C++/",
       children: [
         {
-          text: "Java基础-面向对象",
+          text: "C++网络编程",
           icon: "write",
-          link: "Java基础-面向对象.md",
+          link: "C++网络编程.md",
         },
         {
-          text: "Java基础-泛型机制",
+          text: "C++指针delete",
           icon: "write",
-          link: "Java基础-泛型机制.md",
+          link: "C++指针delete.md",
         },
         {
-          text: "Java基础-注解机制",
+          text: "opengl",
           icon: "write",
-          link: "Java基础-注解机制.md",
+          link: "opengl.md",
         },
         {
-          text: "Java基础-异常机制",
+          text: "pcl中点云显示",
           icon: "write",
-          link: "Java基础-异常机制.md",
+          link: "pcl中点云显示.md",
         },
         {
-          text: "Java基础-反射机制",
+          text: "phpword生成word",
           icon: "write",
-          link: "Java基础-反射机制.md",
+          link: "phpword生成word.md",
         },
         {
-          text: "Java集合-类关系图",
+          text: "C++typedef",
           icon: "write",
-          link: "Java集合-类关系图.md",
-        },
-        {
-          text: "Java集合-ArrayList",
-          icon: "write",
-          link: "Java集合-ArrayList.md",
-        },
-        {
-          text: "Java8新特性",
-          icon: "write",
-          link: "Java8新特性.md",
-        },
-        {
-          text: "Java中的SPI机制",
-          icon: "write",
-          link: "Java中的SPI机制.md",
-        },
-      ],
-    },
-    {
-      text: "Java虚拟机",
-      icon: "engine",
-      collapsible: true,
-      prefix: "/codenotes/jvm/",
-      children: [""],
-    },
-    {
-      text: "企业级框架",
-      icon: "frame",
-      collapsible: true,
-      prefix: "/codenotes/framework/",
-      children: [
-        {
-          text: "Netty",
-          icon: "network",
-          collapsible: true,
-          prefix: "netty/",
-          children: ["Netty核心.md", "Netty高级.md"],
-        },
-        {
-          text: "Electron核心",
-          icon: "write",
-          link: "Electron核心.md",
+          link: "C++typedef.md",
         },
       ],
     },
@@ -96,28 +54,9 @@ export const zhSidebar = sidebar({
           prefix: "lbld/",
           children: [
             "算法小抄核心套路.md",
-            "算法小抄数学运算.md",
-            "算法小抄动态规划.md",
-            "算法小抄数据结构.md",
-            "算法小抄算法思维.md",
-            "算法小抄高频面试.md",
           ],
         },
       ],
-    },
-    {
-      text: "数据库",
-      icon: "mysql",
-      collapsible: true,
-      prefix: "/codenotes/database/",
-      children: [""],
-    },
-    {
-      text: "开发必备",
-      icon: "tool",
-      collapsible: true,
-      prefix: "/codenotes/devtool/",
-      children: [""],
     },
     {
       text: "在线技术文档",
@@ -131,71 +70,51 @@ export const zhSidebar = sidebar({
   // 浮生杂记的侧边栏
   "/floatinglife/": [
     {
-      text: "小镇美食家",
+      text: "书籍资源",
       icon: "linter",
       collapsible: true,
-      link: "/floatinglife/cooker/",
+      link: "/resources/books/",
     },
     {
-      text: "小镇技术宅",
+      text: "影音资源",
       icon: "computer",
       collapsible: true,
-      link: "/floatinglife/iter/",
-    },
-    {
-      text: "小镇运动狂",
-      icon: "strong",
-      collapsible: true,
-      link: "/floatinglife/sporter/",
-    },
-    {
-      text: "小镇思考者",
-      icon: "style",
-      collapsible: true,
-      link: "/floatinglife/thinker/",
-    },
-  ],
-
-  // 开源项目的侧边栏
-  "/projects/": [
-    {
-      text: "技术教程",
-      icon: "guide",
-      collapsible: true,
-      link: "/projects/techguide/",
-    },
-    {
-      text: "实战项目",
-      icon: "workingDirectory",
-      collapsible: true,
-      link: "/projects/pracprojects/",
-    },
-    {
-      text: "系统设计",
-      icon: "shell",
-      collapsible: true,
-      link: "/projects/systemdesign/",
+      link: "/resources/videos/",
     },
     {
       text: "工具类库",
       icon: "module",
       collapsible: true,
-      link: "/projects/toollibrary/",
+      link: "/resources/toollibrary/",
     },
   ],
+
   // 开源项目的侧边栏
-  "/thinking/": [
-    {
-      text: "1",
-      icon: "guide",
-      collapsible: true,
-      link: "/thinking/1/",
-    },
-    {
-      text: "2",
-      icon: "workingDirectory",
-      collapsible: true,
-      link: "/thinking/2/",
-    }
-  ],
+  // "/projects/": [
+  //   {
+  //     text: "技术教程",
+  //     icon: "guide",
+  //     collapsible: true,
+  //     link: "/projects/techguide/",
+  //   },
+  //   {
+  //     text: "实战项目",
+  //     icon: "workingDirectory",
+  //     collapsible: true,
+  //     link: "/projects/pracprojects/",
+  //   },
+  //   {
+  //     text: "系统设计",
+  //     icon: "shell",
+  //     collapsible: true,
+  //     link: "/projects/systemdesign/",
+  //   },
+  //   {
+  //     text: "工具类库",
+  //     icon: "module",
+  //     collapsible: true,
+  //     link: "/projects/toollibrary/",
+  //   },
+  // ],
+
 });

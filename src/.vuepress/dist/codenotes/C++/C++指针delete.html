@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-beta.53" />
+    <meta name="theme" content="VuePress Theme Hope" />
+    <meta property="og:url" content="https://gitee.com/oucystong/notes/codenotes/C++/C++%E6%8C%87%E9%92%88delete.html"><meta property="og:site_name" content="洛风の学习笔记"><meta property="og:title" content="指针delete后要设置为NULL"><meta property="og:description" content="如果直接p=null,而不先 delete p。那么p的地址不可被覆盖，造成内存泄漏(内存不可以再使用)。 ```C++ #include using namespace std; int main() { int *p=new int; *p=3; cout"><meta property="og:type" content="article"><meta property="og:locale" content="zh-CN"><link rel="icon" href="/favicon.svg"><title>指针delete后要设置为NULL | 洛风の学习笔记</title><meta name="description" content="如果直接p=null,而不先 delete p。那么p的地址不可被覆盖，造成内存泄漏(内存不可以再使用)。 ```C++ #include using namespace std; int main() { int *p=new int; *p=3; cout">
+    <style>
+      :root {
+        --bg-color: #fff;
+      }
+
+      html[data-theme="dark"] {
+        --bg-color: #1d2025;
+      }
+
+      html,
+      body {
+        background: var(--bg-color);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.querySelector("html").setAttribute("data-theme", "dark");
+      }
+    </script>
+    <link rel="preload" href="/notes/assets/style.cc2273c4.css" as="style" /><link rel="stylesheet" href="/notes/assets/style.cc2273c4.css" />
+    <link rel="modulepreload" href="/notes/assets/app.4e77b1b0.js"><link rel="modulepreload" href="/notes/assets/C__指针delete.html.bf77d4ec.js"><link rel="modulepreload" href="/notes/assets/_plugin-vue_export-helper.cdc0426e.js"><link rel="modulepreload" href="/notes/assets/C__指针delete.html.e5069d79.js">
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="skip-link sr-only">跳至主要內容</a><!--]--><div class="theme-container has-toc"><!--[--><!--[--><header class="navbar"><div class="navbar-left"><button class="toggle-sidebar-button" title="Toggle Sidebar"><span class="icon"></span></button><!--[--><!----><!--]--><a href="/notes/" class="brand"><img class="logo" src="/notes/萤1.jpg" alt="洛风の学习笔记"><!----><span class="site-name hide-in-pad">洛风の学习笔记</span></a><!--[--><!----><!--]--></div><div class="navbar-center"><!--[--><!----><!--]--><nav class="nav-links"><div class="nav-item hide-in-mobile"><a href="/notes/quicknav/" class="nav-link" aria-label="快速导航"><span class="icon iconfont icon-navigation"></span>快速导航<!----></a></div><div class="nav-item hide-in-mobile"><a href="/notes/codenotes/" class="nav-link active" aria-label="代码笔记"><span class="icon iconfont icon-code"></span>代码笔记<!----></a></div><div class="nav-item hide-in-mobile"><a href="/notes/projects/" class="nav-link" aria-label="GitHub项目"><span class="icon iconfont icon-free"></span>GitHub项目<!----></a></div><div class="nav-item hide-in-mobile"><div class="dropdown-wrapper"><button class="dropdown-title" type="button" aria-label="资源宝库"><span class="title"><span class="icon iconfont icon-advance"></span>资源宝库</span><span class="arrow"></span><ul class="nav-dropdown"><li class="dropdown-item"><a href="/notes/resources/books/" class="nav-link" aria-label="书籍资源"><span class="icon iconfont icon-animation"></span>书籍资源<!----></a></li><li class="dropdown-item"><a href="/notes/resources/videos/" class="nav-link" aria-label="影音资源"><span class="icon iconfont icon-play"></span>影音资源<!----></a></li></ul></button></div></div></nav><!--[--><!----><!--]--></div><div class="navbar-right"><!--[--><!----><!--]--><!----><!----><div class="nav-item hide-in-mobile"><button class="outlook-button" tabindex="-1" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="icon outlook-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="outlook icon"><path d="M224 800c0 9.6 3.2 44.8 6.4 54.4 6.4 48-48 76.8-48 76.8s80 41.6 147.2 0 134.4-134.4 38.4-195.2c-22.4-12.8-41.6-19.2-57.6-19.2C259.2 716.8 227.2 761.6 224 800zM560 675.2l-32 51.2c-51.2 51.2-83.2 32-83.2 32 25.6 67.2 0 112-12.8 128 25.6 6.4 51.2 9.6 80 9.6 54.4 0 102.4-9.6 150.4-32l0 0c3.2 0 3.2-3.2 3.2-3.2 22.4-16 12.8-35.2 6.4-44.8-9.6-12.8-12.8-25.6-12.8-41.6 0-54.4 60.8-99.2 137.6-99.2 6.4 0 12.8 0 22.4 0 12.8 0 38.4 9.6 48-25.6 0-3.2 0-3.2 3.2-6.4 0-3.2 3.2-6.4 3.2-6.4 6.4-16 6.4-16 6.4-19.2 9.6-35.2 16-73.6 16-115.2 0-105.6-41.6-198.4-108.8-268.8C704 396.8 560 675.2 560 675.2zM224 419.2c0-28.8 22.4-51.2 51.2-51.2 28.8 0 51.2 22.4 51.2 51.2 0 28.8-22.4 51.2-51.2 51.2C246.4 470.4 224 448 224 419.2zM320 284.8c0-22.4 19.2-41.6 41.6-41.6 22.4 0 41.6 19.2 41.6 41.6 0 22.4-19.2 41.6-41.6 41.6C339.2 326.4 320 307.2 320 284.8zM457.6 208c0-12.8 12.8-25.6 25.6-25.6 12.8 0 25.6 12.8 25.6 25.6 0 12.8-12.8 25.6-25.6 25.6C470.4 233.6 457.6 220.8 457.6 208zM128 505.6C128 592 153.6 672 201.6 736c28.8-60.8 112-60.8 124.8-60.8-16-51.2 16-99.2 16-99.2l316.8-422.4c-48-19.2-99.2-32-150.4-32C297.6 118.4 128 291.2 128 505.6zM764.8 86.4c-22.4 19.2-390.4 518.4-390.4 518.4-22.4 28.8-12.8 76.8 22.4 99.2l9.6 6.4c35.2 22.4 80 12.8 99.2-25.6 0 0 6.4-12.8 9.6-19.2 54.4-105.6 275.2-524.8 288-553.6 6.4-19.2-3.2-32-19.2-32C777.6 76.8 771.2 80 764.8 86.4z"></path></svg><div class="outlook-dropdown"><!----></div></button></div><form class="search-box" role="search"><input type="search" placeholder="搜索本站" autocomplete="off" spellcheck="false" value><!----></form><!--[--><!----><!--]--><button class="toggle-navbar-button" aria-label="Toggle Navbar" aria-expanded="false" aria-controls="nav-screen"><span class="button-container"><span class="button-top"></span><span class="button-middle"></span><span class="button-bottom"></span></span></button></div></header><!----><!--]--><!----><div class="toggle-sidebar-wrapper"><span class="arrow left"></span></div><aside class="sidebar"><!--[--><!----><!--]--><ul class="sidebar-links"><li><section class="sidebar-group"><button class="sidebar-heading clickable active"><span class="icon iconfont icon-java"></span><span class="title">零碎知识</span><span class="arrow down"></span></button><ul class="sidebar-links"><li><!--[--><a href="/notes/codenotes/C++/C++%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.html" class="nav-link sidebar-link sidebar-page" aria-label="C++网络编程"><span class="icon iconfont icon-write"></span>C++网络编程<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a aria-current="page" href="/notes/codenotes/C++/C++%E6%8C%87%E9%92%88delete.html" class="router-link-active router-link-exact-active nav-link active sidebar-link sidebar-page active" aria-label="C++指针delete"><span class="icon iconfont icon-write"></span>C++指针delete<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/notes/codenotes/C++/opengl.html" class="nav-link sidebar-link sidebar-page" aria-label="opengl"><span class="icon iconfont icon-write"></span>opengl<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/notes/codenotes/C++/pcl%E4%B8%AD%E7%82%B9%E4%BA%91%E6%98%BE%E7%A4%BA.html" class="nav-link sidebar-link sidebar-page" aria-label="pcl中点云显示"><span class="icon iconfont icon-write"></span>pcl中点云显示<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/notes/codenotes/C++/phpword%E7%94%9F%E6%88%90word.html" class="nav-link sidebar-link sidebar-page" aria-label="phpword生成word"><span class="icon iconfont icon-write"></span>phpword生成word<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/notes/codenotes/C++/C++typedef.html" class="nav-link sidebar-link sidebar-page" aria-label="C++typedef"><span class="icon iconfont icon-write"></span>C++typedef<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li></ul></section></li><li><section class="sidebar-group"><button class="sidebar-heading clickable"><span class="icon iconfont icon-ability"></span><span class="title">算法和数据结构</span><span class="arrow right"></span></button><!----></section></li><li><section class="sidebar-group"><button class="sidebar-heading clickable"><span class="icon iconfont icon-read"></span><span class="title">在线技术文档</span><span class="arrow right"></span></button><!----></section></li></ul><!--[--><!----><!--]--></aside><!--[--><main class="page" id="main-content"><!--[--><!----><nav class="breadcrumb disable"></nav><div class="page-title"><h1><!---->指针delete后要设置为NULL</h1><div class="page-info"><!----><!----><span class="reading-time-info" aria-label="阅读时间⌛" data-balloon-pos="down"><svg xmlns="http://www.w3.org/2000/svg" class="icon timer-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="timer icon"><path d="M799.387 122.15c4.402-2.978 7.38-7.897 7.38-13.463v-1.165c0-8.933-7.38-16.312-16.312-16.312H256.33c-8.933 0-16.311 7.38-16.311 16.312v1.165c0 5.825 2.977 10.874 7.637 13.592 4.143 194.44 97.22 354.963 220.201 392.763-122.204 37.542-214.893 196.511-220.2 389.397-4.661 5.049-7.638 11.651-7.638 19.03v5.825h566.49v-5.825c0-7.379-2.849-13.981-7.509-18.9-5.049-193.016-97.867-351.985-220.2-389.527 123.24-37.67 216.446-198.453 220.588-392.892zM531.16 450.445v352.632c117.674 1.553 211.787 40.778 211.787 88.676H304.097c0-48.286 95.149-87.382 213.728-88.676V450.445c-93.077-3.107-167.901-81.297-167.901-177.093 0-8.803 6.99-15.793 15.793-15.793 8.803 0 15.794 6.99 15.794 15.793 0 80.261 63.69 145.635 142.01 145.635s142.011-65.374 142.011-145.635c0-8.803 6.99-15.793 15.794-15.793s15.793 6.99 15.793 15.793c0 95.019-73.789 172.82-165.96 177.093z"></path></svg><span>大约 5 分钟</span><meta property="timeRequired" content="PT5M"></span></div><hr></div><!----><!----><div class="theme-hope-content"><h1 id="指针delete后要设置为null" tabindex="-1"><a class="header-anchor" href="#指针delete后要设置为null" aria-hidden="true">#</a> 指针delete后要设置为NULL</h1><h4 id="如果直接p-null-而不先-delete-p。那么p的地址不可被覆盖-造成内存泄漏-内存不可以再使用-。" tabindex="-1"><a class="header-anchor" href="#如果直接p-null-而不先-delete-p。那么p的地址不可被覆盖-造成内存泄漏-内存不可以再使用-。" aria-hidden="true">#</a> 如果直接p=null,而不先 delete p。那么p的地址不可被覆盖，造成内存泄漏(内存不可以再使用)。</h4><div class="language-C++ line-numbers-mode" data-ext="C++"><pre class="language-C++"><code>#include &lt;iostream&gt;
+using namespace std;
+int main() 
+{
+    int *p=new int; 
+    *p=3;
+    cout&lt;&lt;&quot;将3赋给p的地址后，指针p读取的地址：&quot;&lt;&lt;p&lt;&lt;endl;
+    cout&lt;&lt;&quot;将3赋给p的地址后，指针p读取的值：&quot;&lt;&lt;*p&lt;&lt;endl;
+    delete p;
+    cout&lt;&lt;&quot;删除空间后，指针p读取的值：&quot;&lt;&lt;*p&lt;&lt;endl;
+    cout&lt;&lt;&quot;删除空间后，指针p读取的地址：&quot;&lt;&lt;p&lt;&lt;endl;
+    long *p1=new long;
+    *p1=100;
+    cout&lt;&lt;&quot;创建新空间后，指针p中保存的地址：&quot;&lt;&lt;p&lt;&lt;endl;
+    cout&lt;&lt;&quot;指向新空间的指针p1保存的地址：&quot;&lt;&lt;p1&lt;&lt;endl;
+    cout&lt;&lt;&quot;指向新空间的指针p1保存的值：&quot;&lt;&lt;*p1&lt;&lt;endl;
+    *p=23;
+    cout&lt;&lt;&quot;将23赋给p的地址后，指针p读取的值：&quot;&lt;&lt;*p&lt;&lt;endl;
+    cout&lt;&lt;&quot;将23赋给p的地址后，指针p1读取的值：&quot;&lt;&lt;*p1&lt;&lt;endl;
+    cout&lt;&lt;&quot;将23赋给p的地址后，指针p读取的地址：&quot;&lt;&lt;p&lt;&lt;endl;
+    delete p1;
+    return 0;
+}
+//结果
+将3赋给p的地址后，指针p读取的地址：0x1d56e70
+将3赋给p的地址后，指针p读取的值：3
+删除空间后，指针p读取的值：0
+删除空间后，指针p读取的地址：0x1d56e70
+创建新空间后，指针p中保存的地址：0x1d56e70
+指向新空间的指针p1保存的地址：0x1d56e70
+指向新空间的指针p1保存的值：100
+将23赋给p的地址后，指针p读取的值：23
+将23赋给p的地址后，指针p1读取的值：23
+将23赋给p的地址后，指针p读取的地址：0x1d56e70
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>我们在删除一个指针之后，编译器只会释放该指针所指向的内存空间，而不会删除这个指针本身。</strong></p><p>虽然程序的第8行已经将指针p删除了，但是在监视窗口中p仍然存在，只是*p所指向的值不再是原来的3了，而是一个随机数</p><p>在程序的第10行我们又创建了一个long型的指针p1。在12行与13行的输出中我们惊奇地发现，指针p保存的地址居然和指针p1保存的地址一模一样！这个就说明了指针p和指针p1都指向内存的同一个地方！！！出现这种状况的原因其实是由于编译器。**编译器默认将释放掉的内存空间回收然后分配给新开辟的空间。**所以在第11行由于我们新开辟了一个可以保存long型变量的空间并且由p1来指向它，那么这里的p1指向的其实就是在程序第8行释放掉的内存空间，即p指向的内存空间！所以，这就导致了两个指针同时指向同一个内存空间。这是多不安全的一件事情啊！要知道，我们是把指针p删了的啊！如果再重新对<em>p进行赋值操作，那么不是会连着</em>p1一起改动么？</p><p>果然，让我们担心的事情出现了。我们明明在程序的第11行中定义了<em>p1的值为100，但是在输出上面，指针p1读取的值竟然也是23。这个原因就是因为野指针p造成的。我们可以看到，在程序的第14行我们将23赋给了</em>p。又由于p和p1指向的是同一块内存单元，所以在这里相当于也将p1所指向的内存单元中的值（原来是100），改成了23！这样必然会导致程序的出错</p><div class="language-C++ line-numbers-mode" data-ext="C++"><pre class="language-C++"><code>#include &lt;iostream&gt;
+using namespace std;
+int main() 
+{
+    int *p=new int; 
+    *p=3;
+    cout&lt;&lt;&quot;p删除前的地址：&quot;&lt;&lt;p&lt;&lt;endl;
+    cout&lt;&lt;&quot;p删除前的值：&quot;&lt;&lt;*p&lt;&lt;endl;
+    delete p;
+    cout&lt;&lt;&quot;p删除后的地址：&quot;&lt;&lt;p&lt;&lt;endl;
+    cout&lt;&lt;&quot;p删除后的值：&quot;&lt;&lt;*p&lt;&lt;endl;
+    p=nullptr;
+    cout&lt;&lt;&quot;p指空后的地址：&quot;&lt;&lt;p&lt;&lt;endl;
+   // cout&lt;&lt;&quot;p指空后的值：&quot;&lt;&lt;*p&lt;&lt;endl;
+    int *pp=new int; 
+    *pp=5;
+     cout&lt;&lt;&quot;pp删除前的地址：&quot;&lt;&lt;pp&lt;&lt;endl;
+    cout&lt;&lt;&quot;pp删除前的值：&quot;&lt;&lt;*pp&lt;&lt;endl;
+     delete pp;
+    cout&lt;&lt;&quot;pp删除后的地址：&quot;&lt;&lt;pp&lt;&lt;endl;
+    cout&lt;&lt;&quot;pp删除后的值：&quot;&lt;&lt;*pp&lt;&lt;endl;
+     pp=nullptr;
+    cout&lt;&lt;&quot;pp删除后的地址：&quot;&lt;&lt;pp&lt;&lt;endl;
+    // cout&lt;&lt;&quot;pp删除后的值：&quot;&lt;&lt;*pp&lt;&lt;endl;
+    //*pp=10;
+    //cout&lt;&lt;*pp&lt;&lt;&quot;\t&quot;&lt;&lt;*p;
+    //这段代码加上会报错，说明已经指空的指针不能赋值不然就报错
+    return 0;
+}
+//结果
+p删除前的地址：0x1690e70
+p删除前的值：3
+p删除后的地址：0x1690e70
+p删除后的值：0
+p指空后的地址：0
+pp删除前的地址：0x1690e70
+pp删除前的值：5
+pp删除后的地址：0x1690e70
+pp删除后的值：0
+pp删除后的地址：0
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h5 id="计算机上删除数据的方式-删除数据-视频-音乐-文件等-计算机并不会把存储数据的硬盘区域-或者是内存-的内容擦除消去-而是将内容标记为可覆盖-这时候我们就不能再访问到数据-而这些可覆盖据数据会留在原来的硬盘区域直到被新的数据逐渐覆盖。-所以-删除了数据之后-只要没有对硬盘进行过多的操作-还是有可能复原数据的-所以-当我删除不可告人的东西时就要反复下载东西填充硬盘吗-●ˇ∀ˇ●" tabindex="-1"><a class="header-anchor" href="#计算机上删除数据的方式-删除数据-视频-音乐-文件等-计算机并不会把存储数据的硬盘区域-或者是内存-的内容擦除消去-而是将内容标记为可覆盖-这时候我们就不能再访问到数据-而这些可覆盖据数据会留在原来的硬盘区域直到被新的数据逐渐覆盖。-所以-删除了数据之后-只要没有对硬盘进行过多的操作-还是有可能复原数据的-所以-当我删除不可告人的东西时就要反复下载东西填充硬盘吗-●ˇ∀ˇ●" aria-hidden="true">#</a> 计算机上删除数据的方式：删除数据（视频，音乐，文件等），计算机并不会把存储数据的硬盘区域(或者是内存)的内容擦除消去，而是将内容标记为可覆盖，这时候我们就不能再访问到数据，而这些可覆盖据数据会留在原来的硬盘区域直到被新的数据逐渐覆盖。（所以，删除了数据之后，只要没有对硬盘进行过多的操作，还是有可能复原数据的（所以，当我删除不可告人的东西时就要反复下载东西填充硬盘吗？(●ˇ∀ˇ●)）</h5><h5 id="正题来了-delete-p-的含义不是删除消灭p。而是让p所指向的地址的内容标记为可覆盖。而p-null-则是将指针指向空。" tabindex="-1"><a class="header-anchor" href="#正题来了-delete-p-的含义不是删除消灭p。而是让p所指向的地址的内容标记为可覆盖。而p-null-则是将指针指向空。" aria-hidden="true">#</a> 正题来了，delete p 的含义不是删除消灭p。而是让p所指向的地址的内容标记为可覆盖。而p=null 则是将指针指向空。</h5><h5 id="delete-p-之后-p指向地址可覆盖-但是p仍然指向原来的地址-随着程序的运行-原本内存可能被使用-p指向可能内容改变。所以为了安全起见-将p指向null。避免p不小心再次被使用。" tabindex="-1"><a class="header-anchor" href="#delete-p-之后-p指向地址可覆盖-但是p仍然指向原来的地址-随着程序的运行-原本内存可能被使用-p指向可能内容改变。所以为了安全起见-将p指向null。避免p不小心再次被使用。" aria-hidden="true">#</a> delete p 之后，p指向地址可覆盖，但是p仍然指向原来的地址，随着程序的运行，原本内存可能被使用，p指向可能内容改变。所以为了安全起见，将p指向null。避免p不小心再次被使用。</h5><h5 id="如果直接p-null-而不先-delete-p。那么p的地址不可被覆盖-造成内存泄漏-内存不可以再使用-。-1" tabindex="-1"><a class="header-anchor" href="#如果直接p-null-而不先-delete-p。那么p的地址不可被覆盖-造成内存泄漏-内存不可以再使用-。-1" aria-hidden="true">#</a> 如果直接p=null,而不先 delete p。那么p的地址不可被覆盖，造成内存泄漏(内存不可以再使用)。</h5><div class="language-C++ line-numbers-mode" data-ext="C++"><pre class="language-C++"><code>#include &lt;iostream&gt;
+using namespace std;
+int main() 
+{
+    for(int i=0;i&lt;5;i++)
+    {
+    int *p=new int; 
+    *p=i;
+    cout&lt;&lt;&quot;p的地址： &quot;&lt;&lt;p&lt;&lt;endl;
+    cout&lt;&lt;&quot;p的值： &quot;&lt;&lt;*p&lt;&lt;endl;
+    delete p;
+    *p=10;
+     cout&lt;&lt;&quot;删除后p的地址： &quot;&lt;&lt;p&lt;&lt;endl;
+    cout&lt;&lt;&quot;删除后p的值： &quot;&lt;&lt;*p&lt;&lt;endl;
+    p=nullptr;
+    }
+    return 0;
+}
+//结果
+p的地址： 0x1bd1e70
+p的值： 0
+删除后p的地址： 0x1bd1e70
+删除后p的值： 10
+p的地址： 0x1bd1e70
+p的值： 1
+删除后p的地址： 0x1bd1e70
+删除后p的值： 10
+p的地址： 0x1bd1e70
+p的值： 2
+删除后p的地址： 0x1bd1e70
+删除后p的值： 10
+p的地址： 0x1bd1e70
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div><!----><footer class="page-meta"><!----><!----><!----></footer><nav class="page-nav"><a href="/notes/codenotes/C++/C++%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B.html" class="nav-link prev" aria-label="C++网络编程"><div class="hint"><span class="arrow left"></span>上一页</div><div class="link"><span class="icon iconfont icon-write"></span>C++网络编程</div></a><a href="/notes/codenotes/C++/opengl.html" class="nav-link next" aria-label="opengl"><div class="hint">下一页<span class="arrow right"></span></div><div class="link">opengl<span class="icon iconfont icon-write"></span></div></a></nav><!----><!----><!--]--></main><!--]--><!----><!--]--></div><!--]--><!----><!--]--></div>
+    <script type="module" src="/notes/assets/app.4e77b1b0.js" defer></script>
+  </body>
+</html>
