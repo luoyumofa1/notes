@@ -15,10 +15,13 @@ export default hopeTheme({
     url: "https://gitee.com/oucystong",
   },
 
-  // 使用官方提供的图标库-也可以构建自己的图标库
+  // 使用官方提供的图标库-也可以构建自己的图标库  
   iconAssets: "iconfont",
-
+  //iconAssets: "//at.alicdn.com/t/c/font_4171956_c1hu56gqeo.css",
+//https://vuepress-theme-hope.github.io/v2/zh/guide/interface/icon.html#%E6%B5%8F%E8%A7%88%E5%9B%BE%E6%A0%87
   // 网站图标
+
+  
   logo: "/萤1.jpg",
 
   // 导航栏上的个人仓库地址
