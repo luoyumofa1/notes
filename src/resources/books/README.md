@@ -22,9 +22,6 @@ timeline: true
 | ------------------------------------------ | ----------------------------------------- |
 | `《Labuladong的算法小抄》`                 | https://www.aliyundrive.com/s/8ouAjxFVgUX |
 | `《小傅哥的IDEA插件开发手册》`             | https://www.aliyundrive.com/s/Pq7xVp9bXdR |
-| `《疯狂Java讲义第四版》`                   | https://www.aliyundrive.com/s/Yd2L8XtGWUa |
-| `《Java核心技术-卷1-基础知识》`            | https://www.aliyundrive.com/s/EvpXjq55LXn |
-| `《Java核心技术-卷2-高级特性》`            | https://www.aliyundrive.com/s/hT5RQDe6q1k |
 | `《Linux命令速查手册》`                    | https://www.aliyundrive.com/s/ophXiMFVPrB |
 | `《鸟哥的Linux私房菜-高清》`               | https://www.aliyundrive.com/s/bd9PeqCf82N |
 | `《鸟哥的Linux私房菜-非高清》`             | https://www.aliyundrive.com/s/e9ag9zBwTCS |
@@ -32,4 +29,3 @@ timeline: true
 | `《统计学习方法-李航》`                    | https://www.aliyundrive.com/s/Gae5A3tJaZn |
 | `《Matlab神经网络30个案例分析》`           | https://www.aliyundrive.com/s/EVibkTrcFex |
 | `《具有AI功能加持的终端工具warp使用总结》` | https://www.aliyundrive.com/s/kXKqP4RqyUD |
-

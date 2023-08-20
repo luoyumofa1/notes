@@ -5,14 +5,19 @@ export const zhSidebar = sidebar({
   "/codenotes/": [
     {
       text: "零碎知识",
-      icon: "java",
+      icon: "proposal",
       collapsible: true,
       prefix: "/codenotes/C++/",
       children: [
         {
-          text: "C++网络编程",
+          text: "regexp",
           icon: "write",
-          link: "C++网络编程.md",
+          link: "regexp.md",
+        },
+        {
+          text: "git操作",
+          icon: "write",
+          link: "git操作.md",
         },
         {
           text: "C++指针delete",
@@ -20,9 +25,9 @@ export const zhSidebar = sidebar({
           link: "C++指针delete.md",
         },
         {
-          text: "opengl",
+          text: "C++正则表达式-函数",
           icon: "write",
-          link: "opengl.md",
+          link: "C++正则表达式-函数.md",
         },
         {
           text: "pcl中点云显示",
@@ -30,14 +35,9 @@ export const zhSidebar = sidebar({
           link: "pcl中点云显示.md",
         },
         {
-          text: "phpword生成word",
+          text: "vcpkg包管理器快速入门",
           icon: "write",
-          link: "phpword生成word.md",
-        },
-        {
-          text: "C++typedef",
-          icon: "write",
-          link: "C++typedef.md",
+          link: "vcpkg包管理器快速入门.md",
         },
       ],
     },
@@ -88,33 +88,4 @@ export const zhSidebar = sidebar({
       link: "/resources/toollibrary/",
     },
   ],
-
-  // 开源项目的侧边栏
-  // "/projects/": [
-  //   {
-  //     text: "技术教程",
-  //     icon: "guide",
-  //     collapsible: true,
-  //     link: "/projects/techguide/",
-  //   },
-  //   {
-  //     text: "实战项目",
-  //     icon: "workingDirectory",
-  //     collapsible: true,
-  //     link: "/projects/pracprojects/",
-  //   },
-  //   {
-  //     text: "系统设计",
-  //     icon: "shell",
-  //     collapsible: true,
-  //     link: "/projects/systemdesign/",
-  //   },
-  //   {
-  //     text: "工具类库",
-  //     icon: "module",
-  //     collapsible: true,
-  //     link: "/projects/toollibrary/",
-  //   },
-  // ],
-
 });
